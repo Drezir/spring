@@ -8,4 +8,11 @@
         <constructor-arg value="3"/>
     </bean>
 
+    <bean id="sonet20" class="beans.impl.Sonet20"/>
+
+    <bean id="poeticDuke" class="beans.impl.PoeticJuggler">
+        <constructor-arg value="15"/>
+        <constructor-arg ref="sonet20"/>
+    </bean>
+
 </beans>

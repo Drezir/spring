@@ -9,7 +9,9 @@ public class SpringApp {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
         Performer performer = (Performer)context.getBean("duke");
+        Performer poeticPerformer = (Performer)context.getBean("poeticDuke");
         performer.perform();
+        poeticPerformer.perform();
     }
 
 }
