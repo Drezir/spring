@@ -1,4 +1,4 @@
-package beans.impl;
+package beans.impl.jugglers;
 
 import beans.api.Performer;
 import lombok.Data;

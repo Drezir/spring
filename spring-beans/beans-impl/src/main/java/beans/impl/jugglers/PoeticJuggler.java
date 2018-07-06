@@ -1,7 +1,8 @@
-package beans.impl;
+package beans.impl.jugglers;
 
 import beans.api.Poem;
 import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +13,9 @@ public class PoeticJuggler extends Juggler {
     @Getter
     private final Poem poem;
 
+    @Getter @Setter
+    private int age;
+
     public PoeticJuggler(int beanBags, Poem poem) {
         super(beanBags);
         this.poem = poem;
@@ -20,7 +24,7 @@ public class PoeticJuggler extends Juggler {
     @Override
     public void perform() {
         super.perform();
-        LOG.info("While reciting...");
+        LOG.info("I am poet({}). While reciting...", age);
         poem.recite();
     }
 }

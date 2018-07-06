@@ -4,15 +4,46 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-    <bean id="duke" class="beans.impl.Juggler">
+    <bean id="duke" class="beans.impl.jugglers.Juggler">
         <constructor-arg value="3"/>
     </bean>
 
     <bean id="sonet20" class="beans.impl.Sonet20"/>
 
-    <bean id="poeticDuke" class="beans.impl.PoeticJuggler">
+    <bean id="stage" class="beans.impl.Stage"
+          factory-method="getInstance"/>
+
+    <!-- each call provide new instance for bean by defining scope to provided -->
+    <bean id="ticket" class="beans.impl.Ticket" scope="prototype"/>
+
+    <!-- Init and destroy (called only on prototype) methods -->
+    <bean id="hall" class="beans.impl.Hall"
+          init-method="turnLightsOn"
+          destroy-method="turnLightsOff"/>
+
+    <!-- inner beans -->
+    <bean id="playingJuggler" class="beans.impl.jugglers.PlayingJuggler">
+        <constructor-arg>
+            <bean class="beans.impl.instruments.Piano"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- injecting collection -->
+    <bean id="piano" class="beans.impl.instruments.Piano"/>
+    <bean id="guitar" class="beans.impl.instruments.Guitar"/>
+    <bean id="unnamedBand" class="beans.impl.UnnamedBand">
+        <property name="instruments">
+            <set>
+                <ref bean="piano"/>
+                <ref bean="guitar"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="poeticDuke" class="beans.impl.jugglers.PoeticJuggler">
         <constructor-arg value="15"/>
         <constructor-arg ref="sonet20"/>
+        <property name="age" value="18"/>
     </bean>
 
 </beans>
