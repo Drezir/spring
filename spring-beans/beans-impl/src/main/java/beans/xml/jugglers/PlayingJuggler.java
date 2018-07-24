@@ -1,4 +1,4 @@
-package beans.impl.jugglers;
+package beans.xml.jugglers;
 
 import beans.api.Instrument;
 import beans.api.Performer;

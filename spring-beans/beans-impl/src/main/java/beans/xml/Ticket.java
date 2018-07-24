@@ -1,4 +1,4 @@
-package beans.impl;
+package beans.xml;
 
 public class Ticket {
 }

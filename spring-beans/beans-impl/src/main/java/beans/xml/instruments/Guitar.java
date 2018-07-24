@@ -1,4 +1,4 @@
-package beans.impl.instruments;
+package beans.xml.instruments;
 
 import beans.api.Instrument;
 

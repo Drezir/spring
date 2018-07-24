@@ -1,4 +1,4 @@
-package beans.impl;
+package beans.xml;
 
 import beans.api.Instrument;
 import beans.api.Performer;

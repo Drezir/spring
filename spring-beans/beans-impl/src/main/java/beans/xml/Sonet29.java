@@ -1,8 +1,8 @@
-package beans.impl;
+package beans.xml;
 
 import beans.api.Poem;
 
-public class Sonet20 implements Poem {
+public class Sonet29 implements Poem {
 
     private static String[] LINES = {
             "When, in disgrace with fortune and men's eyes,",

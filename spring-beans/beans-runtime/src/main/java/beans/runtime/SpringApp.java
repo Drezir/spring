@@ -7,11 +7,22 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringApp {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+        /*
+        ApplicationContext annotatedContext =
+                new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        annotatedContext.getBean(Performer.class).perform();
+        */
+
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("application-context.xml");
         Performer performer = (Performer)context.getBean("duke");
-        Performer poeticPerformer = (Performer)context.getBean("poeticDuke");
+        performer.perform();
+        /*
         performer.perform();
         poeticPerformer.perform();
+        kenny2.perform();
+        */
+
     }
 
 }

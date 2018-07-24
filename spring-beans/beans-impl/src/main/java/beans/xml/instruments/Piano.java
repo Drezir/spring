@@ -1,8 +1,6 @@
-package beans.impl.instruments;
+package beans.xml.instruments;
 
 import beans.api.Instrument;
-
-import javax.xml.bind.SchemaOutputResolver;
 
 public class Piano implements Instrument {
     public void play() {
