@@ -10,6 +10,7 @@
     <modules>
         <module>spring-beans</module>
         <module>dependencies-parent</module>
+        <module>spring-annotated</module>
     </modules>
     <packaging>pom</packaging>
 
