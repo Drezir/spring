@@ -29,10 +29,13 @@ public class Main {
 
         ((Singleton)applicationContext.getBean("singleton1")).sayHello();
 
-        User user3 = (User)applicationContext.getBean("user3");
+        User user3 = applicationContext.getBean(User.class);
         LOGGER.info("Invalid user has id[{}]", user3.getId());
 
         LifecycleBean lifecycleBean = (LifecycleBean)applicationContext.getBean("lifecycle");
+
+        User unknown = (User)applicationContext.getBean("Unknown");
+        LOGGER.info(unknown.toString());
     }
 
 }

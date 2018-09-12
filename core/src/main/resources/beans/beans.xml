@@ -2,13 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
        xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:beans.properties"/>
 
     <alias name="user1" alias="userAlias"/>
-
     <!-- abstract user to be inherited from -->
-    <bean id="superuser" abstract="true" class="core.beans.User" p:password="InheritedPassword"/>
+    <bean id="superuser" abstract="true" class="core.beans.User" p:password="${user.password}"/>
     <!-- constructor based initialization -->
     <bean id="user1" class="core.beans.User"
           parent="superuser"
@@ -20,10 +22,11 @@
           parent="superuser"
           factory-method="createInstance"
           p:username="SomeUserName1"/>
+    <context:property-override location="classpath:beans-override.properties"/>
 
-    <!-- method replacement -->
+    <!-- method replacement and user without id but primary -->
     <bean id="methodReplacer" class="core.beans.User.UserMethodReplacer"/>
-    <bean id="user3" class="core.beans.User"
+    <bean class="core.beans.User" primary="true"
           parent="superuser"
           c:id="1"
           p:username="Invalid">
@@ -47,6 +50,9 @@
     <bean id="lifecycle" class="core.beans.LifecycleBean"/>
 
     <!-- Application context aware -->
-    <bean id="applicationcontextAware" class="core.beans.AwareInterfaces"/>
+    <bean class="core.beans.AwareInterfaces"/>
+
+    <!-- Bean post processor -->
+    <bean class="core.beans.BeanPostProcessorBean"/>
 
 </beans>

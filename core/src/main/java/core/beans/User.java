@@ -2,6 +2,7 @@ package core.beans;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.support.MethodReplacer;
 
 import javax.annotation.PostConstruct;
@@ -46,6 +47,7 @@ public class User {
         return username;
     }
 
+    @Required
     public void setUsername(String username) {
         this.username = username;
     }
@@ -60,7 +62,7 @@ public class User {
 
     @Override
     public String toString() {
-        return username;
+        return String.format("%s | %s", username, password);
     }
 
     public static class UserMethodReplacer implements MethodReplacer {
