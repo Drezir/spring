@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <alias name="user1" alias="userAlias"/>
+
+    <!-- abstract user to be inherited from -->
+    <bean id="superuser" abstract="true" class="core.beans.User" p:password="InheritedPassword"/>
+    <!-- constructor based initialization -->
+    <bean id="user1" class="core.beans.User"
+          parent="superuser"
+          c:id="#{T(java.lang.Math).random()}"
+          p:username="SomeUserName"
+    />
+    <!-- factory method based initilization -->
+    <bean id="user2" class="core.beans.User"
+          parent="superuser"
+          factory-method="createInstance"
+          p:username="SomeUserName1"/>
+
+    <!-- method replacement -->
+    <bean id="methodReplacer" class="core.beans.User.UserMethodReplacer"/>
+    <bean id="user3" class="core.beans.User"
+          parent="superuser"
+          c:id="1"
+          p:username="Invalid">
+        <replaced-method name="getId" replacer="methodReplacer"/>
+    </bean>
+
+
+    <util:list id="usersInShop" value-type="core.beans.User">
+        <ref bean="user1"/>
+        <ref bean="user2"/>
+    </util:list>
+    <bean id="shop1" class="core.beans.Shop" depends-on="usersInShop" scope="prototype"
+        c:users-ref="usersInShop"/>
+
+    <!-- Lazy initialization -->
+    <bean id="singleton1" class="core.beans.Singleton"
+          factory-method="getInstance"
+          lazy-init="true"/>
+
+    <!-- Lifecycle bean -->
+    <bean id="lifecycle" class="core.beans.LifecycleBean"/>
+
+    <!-- Application context aware -->
+    <bean id="applicationcontextAware" class="core.beans.AwareInterfaces"/>
+
+</beans>
