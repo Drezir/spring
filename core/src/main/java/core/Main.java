@@ -19,7 +19,9 @@ public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+        // AnnotationConfigApplicationContext for annotation only (without xml definitions)
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-app.xml");
+        applicationContext.getEnvironment().acceptsProfiles("dev");
 
         User user = (User)applicationContext.getBean("userAlias");
         LOGGER.info(user.toString());
