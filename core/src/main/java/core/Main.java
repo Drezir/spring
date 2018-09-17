@@ -2,6 +2,7 @@ package core;
 
 import core.beans.*;
 import core.conversion.Smartphone;
+import core.spel.SpelExpressions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -60,6 +61,9 @@ public class Main {
         // conversion
         Smartphone smartphone = (Smartphone)applicationContext.getBean("smartphone");
         LOGGER.info(String.valueOf(smartphone.getAndroid()));
+
+        SpelExpressions spelExpressions = (SpelExpressions)applicationContext.getBean(SpelExpressions.class);
+        spelExpressions.init();
     }
 
 }

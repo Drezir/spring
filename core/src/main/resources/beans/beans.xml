@@ -81,4 +81,7 @@
         </property>
     </bean>
 
+    <!-- SpeL -->
+    <bean class="core.spel.SpelExpressions"/>
+
 </beans>
