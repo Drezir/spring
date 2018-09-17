@@ -1,13 +1,16 @@
 package core;
 
-import core.beans.LifecycleBean;
-import core.beans.Shop;
-import core.beans.Singleton;
-import core.beans.User;
+import core.beans.*;
+import core.conversion.Smartphone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * @author Adam Ostrozlik
@@ -38,6 +41,25 @@ public class Main {
 
         User unknown = (User)applicationContext.getBean("Unknown");
         LOGGER.info(unknown.toString());
+
+        ResourceBean resourceBean = (ResourceBean)applicationContext.getBean("resourceBean");
+        LOGGER.info(resourceBean.getResource().getDescription());
+        try (BufferedReader br = new BufferedReader(new FileReader(resourceBean.getResource().getFile()))) {
+            String line;
+            StringBuilder stringBuilder = new StringBuilder("\n");
+            while((line = br.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            LOGGER.info(stringBuilder.toString());
+        } catch (FileNotFoundException e) {
+            LOGGER.error("File not found", e);
+        } catch (IOException e) {
+            LOGGER.error("Error opening file", e);
+        }
+
+        // conversion
+        Smartphone smartphone = (Smartphone)applicationContext.getBean("smartphone");
+        LOGGER.info(String.valueOf(smartphone.getAndroid()));
     }
 
 }

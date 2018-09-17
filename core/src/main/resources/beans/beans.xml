@@ -59,4 +59,26 @@
     <!-- Bean post processor -->
     <bean class="core.beans.BeanPostProcessorBean"/>
 
+    <!-- resources -->
+    <bean id="resourceBean" class="core.beans.ResourceBean" c:resource="classpath:log4j2.xml"/>
+
+    <!-- conversion -->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="core.conversion.Android" value="core.conversion.Android.AndroidEditor"/>
+            </map>
+        </property>
+    </bean>
+    <bean id="smartphone" class="core.conversion.Smartphone" c:android="8.1" c:brand="Asus"/>
+
+    <!-- formatting -->
+    <bean id="formattingService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="core.conversion.Android$AndroidFormatter"/>
+            </set>
+        </property>
+    </bean>
+
 </beans>
