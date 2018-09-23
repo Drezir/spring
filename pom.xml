@@ -13,6 +13,7 @@
         <module>core</module>
         <module>profiles</module>
         <module>aop</module>
+        <module>testing</module>
     </modules>
 
     <properties>
@@ -23,6 +24,7 @@
         <kotlin.version>1.2.61</kotlin.version>
         <jcl-over-slf4j.version>1.7.25</jcl-over-slf4j.version>
         <aspectj.version>1.9.1</aspectj.version>
+        <junit.version>5.3.1</junit.version>
     </properties>
 
     <dependencyManagement>
@@ -73,6 +75,17 @@
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <scope>test</scope>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
