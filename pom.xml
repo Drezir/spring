@@ -12,6 +12,7 @@
     <modules>
         <module>core</module>
         <module>profiles</module>
+        <module>aop</module>
     </modules>
 
     <properties>
@@ -21,6 +22,7 @@
         <log4j.version>2.11.1</log4j.version>
         <kotlin.version>1.2.61</kotlin.version>
         <jcl-over-slf4j.version>1.7.25</jcl-over-slf4j.version>
+        <aspectj.version>1.9.1</aspectj.version>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +58,21 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
                 <version>${jcl-over-slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
